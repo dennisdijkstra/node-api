@@ -1,3 +1,5 @@
+const Bootcamp = require('../models/Bootcamp');
+
 // $desc        Get all bootcamps
 // @routes      GET /api/v1/bootcamps
 // @access      Public
