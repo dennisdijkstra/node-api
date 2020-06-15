@@ -13,8 +13,8 @@ exports.getBootcamps = async (req, res, next) => {
             count: bootcamps.length,
             data: bootcamps,
         });
-    } catch (error) {
-        next(error);
+    } catch (err) {
+        next(er);
     } 
 };
 
@@ -33,8 +33,8 @@ exports.getBootcamp = async (req, res, next) => {
             success: true,
             data: bootcamp,
         });
-    } catch (error) {
-        next(error);
+    } catch (err) {
+        next(err);
     }
 };
 
@@ -49,8 +49,8 @@ exports.createBootcamp = async (req, res, next) => {
             success: true,
             data: bootcamp
          });
-    } catch (error) {
-        next(error);
+    } catch (err) {
+        next(err);
     }
 };
 
@@ -72,8 +72,8 @@ exports.updateBootcamp = async (req, res, next) => {
             success: true,
             data: bootcamp,
         });
-    } catch (error) {
-        next(error);
+    } catch (err) {
+        next(err);
     }
 };
 
@@ -92,7 +92,7 @@ exports.deleteBootcamp = async (req, res, next) => {
             success: true,
             data: {},
         });
-    } catch (error) {
-        next(error);
+    } catch (err) {
+        next(err);
     }
 };
