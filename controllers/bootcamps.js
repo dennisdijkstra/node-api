@@ -5,7 +5,7 @@ const asyncHandler = require('../middleware/async');
 // $desc        Get all bootcamps
 // @routes      GET /api/v1/bootcamps
 // @access      Public
-exports.getBootcamps = asyncHander(async (req, res, next) => {
+exports.getBootcamps = asyncHandler(async (req, res, next) => {
     const bootcamps = await Bootcamp.find();
 
     res.status(200).json({
@@ -18,7 +18,7 @@ exports.getBootcamps = asyncHander(async (req, res, next) => {
 // $desc        Get single bootcamp
 // @routes      GET /api/v1/bootcamps/:id
 // @access      Public
-exports.getBootcamp = asyncHander(async (req, res, next) => {
+exports.getBootcamp = asyncHandler(async (req, res, next) => {
     const bootcamp = await Bootcamp.findById(req.params.id);
     
     if(!bootcamp) {
@@ -34,7 +34,7 @@ exports.getBootcamp = asyncHander(async (req, res, next) => {
 // $desc        Create new bootcamp
 // @routes      POST /api/v1/bootcamps
 // @access      Private
-exports.createBootcamp = asyncHander(async (req, res, next) => {
+exports.createBootcamp = asyncHandler(async (req, res, next) => {
     const bootcamp = await Bootcamp.create(req.body);
 
     res.status(201).json({
@@ -46,7 +46,7 @@ exports.createBootcamp = asyncHander(async (req, res, next) => {
 // $desc        Update bootcamp
 // @routes      PUT /api/v1/bootcamps/:id
 // @access      Private
-exports.updateBootcamp = asyncHander(async (req, res, next) => {
+exports.updateBootcamp = asyncHandler(async (req, res, next) => {
     const bootcamp = await Bootcamp.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
         runValidators: true,
@@ -65,7 +65,7 @@ exports.updateBootcamp = asyncHander(async (req, res, next) => {
 // $desc        Delete bootcamp
 // @routes      DELETE /api/v1/bootcamps/:id
 // @access      Private
-exports.deleteBootcamp = asyncHander(async (req, res, next) => {
+exports.deleteBootcamp = asyncHandler(async (req, res, next) => {
     const bootcamp = await Bootcamp.findByIdAndDelete(req.params.id);
 
     if(!bootcamp) {
