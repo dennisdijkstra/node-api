@@ -6,10 +6,34 @@ const asyncHandler = require('../middleware/async');
 // @routes      GET /api/v1/bootcamps
 // @access      Public
 exports.getBootcamps = asyncHandler(async (req, res, next) => {
-    let queryString = JSON.stringify(req.query);
+    let query;
+
+    // Copy req.query
+    const requestQuery = { ...req.query};
+
+    // Fields to exclude
+    const removeFields = ['select'];
+
+    // Map and delete removeFields
+    removeFields.map(field => delete requestQuery[field]);
+
+    // Create querystring
+    let queryString = JSON.stringify(requestQuery);
+
+    // Create operators ($gt, $gte, etc)
     queryString = queryString.replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}`);
 
-    const bootcamps = await Bootcamp.find(JSON.parse(queryString));
+    // Finding resource
+    query = Bootcamp.find(JSON.parse(queryString));
+
+    // Select Fields
+    if (req.query.select) {
+        const fields = req.query.select.split(',').join(' ');
+        query = query.select(fields);
+    }
+
+    // Executing query
+    const bootcamps = await query;
 
     res.status(200).json({
         success: true,
