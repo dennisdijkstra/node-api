@@ -2,7 +2,7 @@ const Bootcamp = require('../models/Bootcamp');
 const ErrorResponse = require('../utils/ErrorResponse');
 const asyncHandler = require('../middleware/async');
 
-// $desc        Get all bootcamps
+// @desc        Get all bootcamps
 // @routes      GET /api/v1/bootcamps
 // @access      Public
 exports.getBootcamps = asyncHandler(async (req, res, next) => {
@@ -77,7 +77,7 @@ exports.getBootcamps = asyncHandler(async (req, res, next) => {
     });
 });
 
-// $desc        Get single bootcamp
+// @desc        Get single bootcamp
 // @routes      GET /api/v1/bootcamps/:id
 // @access      Public
 exports.getBootcamp = asyncHandler(async (req, res, next) => {
@@ -93,7 +93,7 @@ exports.getBootcamp = asyncHandler(async (req, res, next) => {
     });
 });
 
-// $desc        Create new bootcamp
+// @desc        Create new bootcamp
 // @routes      POST /api/v1/bootcamps
 // @access      Private
 exports.createBootcamp = asyncHandler(async (req, res, next) => {
@@ -105,7 +105,7 @@ exports.createBootcamp = asyncHandler(async (req, res, next) => {
      });
 });
 
-// $desc        Update bootcamp
+// @desc        Update bootcamp
 // @routes      PUT /api/v1/bootcamps/:id
 // @access      Private
 exports.updateBootcamp = asyncHandler(async (req, res, next) => {
@@ -124,7 +124,7 @@ exports.updateBootcamp = asyncHandler(async (req, res, next) => {
     });
 });
 
-// $desc        Delete bootcamp
+// @desc        Delete bootcamp
 // @routes      DELETE /api/v1/bootcamps/:id
 // @access      Private
 exports.deleteBootcamp = asyncHandler(async (req, res, next) => {
