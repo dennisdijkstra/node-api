@@ -32,7 +32,7 @@ const CourseSchema = new mongoose.Schema({
         default: Date.now,
     },
     bootcamp: {
-        type: mongoose.Schema.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Bootcamp',
         required: true,
     },
@@ -67,8 +67,8 @@ CourseSchema.post('save', function() {
 });
 
 // Call getAverageCost before remove
-CourseSchema.pre('remove', function() {
-    this.constructor.getAverageCost(this.bootcamp);
+CourseSchema.post('deleteOne', { document: true, query: false }, async function() {
+    await this.constructor.getAverageCost(this.bootcamp);
 });
 
 
