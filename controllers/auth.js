@@ -5,7 +5,7 @@ import User from '../models/User.js';
 // @desc        Register user
 // @routes      GET /api/v1/auth/register
 // @access      Public
-const register = asyncHandler(async (req, res, next) => {
+const register = asyncHandler(async (req, res) => {
     const { name, email, password, role } = req.body;
 
     // Create User

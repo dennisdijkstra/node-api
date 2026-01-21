@@ -5,7 +5,7 @@ import morgan from 'morgan';
 import fileupload from 'express-fileupload';
 import errorHandler from './middleware/error.js';
 import connectDB from './config/db.js';
-import colors from 'colors';
+import 'colors'
 
 // Connect to database
 connectDB();

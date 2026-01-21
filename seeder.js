@@ -1,6 +1,5 @@
 import fs from 'fs';
 import mongoose from 'mongoose';
-import colors from 'colors';
 
 // Load models 
 import Bootcamp from './models/Bootcamp.js';
