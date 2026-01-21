@@ -1,14 +1,12 @@
 const express = require('express');
 const path = require('path');
-const dotenv = require('dotenv');
 const morgan = require('morgan');
-const colors = require('colors');
 const fileupload = require('express-fileupload');
 const errorHandler = require('./middleware/error');
 const connectDB = require('./config/db');
 
-// Load env variables
-dotenv.config({ path: './config/config.env' });
+require('colors');
+require('dotenv').config()
 
 // Connect to database
 connectDB();
