@@ -1,11 +1,11 @@
-const ErrorResponse = require('../utils/ErrorResponse');
-const asyncHandler = require('../middleware/async');
-const User = require('../models/User');
+import ErrorResponse from '../utils/ErrorResponse.js';
+import asyncHandler from '../middleware/async.js';
+import User from '../models/User.js';
 
 // @desc        Register user
 // @routes      GET /api/v1/auth/register
 // @access      Public
-exports.register = asyncHandler(async (req, res, next) => {
+const register = asyncHandler(async (req, res, next) => {
     const { name, email, password, role } = req.body;
 
     // Create User
@@ -24,3 +24,5 @@ exports.register = asyncHandler(async (req, res, next) => {
         token,
     });
 });
+
+export { register };

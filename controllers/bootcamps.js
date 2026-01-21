@@ -1,19 +1,19 @@
-const path = require('path');
-const Bootcamp = require('../models/Bootcamp');
-const ErrorResponse = require('../utils/ErrorResponse');
-const asyncHandler = require('../middleware/async');
+import path from 'path';
+import Bootcamp from '../models/Bootcamp.js';
+import ErrorResponse from '../utils/ErrorResponse.js';
+import asyncHandler from '../middleware/async.js';
 
 // @desc        Get all bootcamps
 // @routes      GET /api/v1/bootcamps
 // @access      Public
-exports.getBootcamps = asyncHandler(async (req, res, next) => {
+const getBootcamps = asyncHandler(async (req, res, next) => {
     res.status(200).json(res.advancedResults);
 });
 
 // @desc        Get single bootcamp
 // @routes      GET /api/v1/bootcamps/:id
 // @access      Public
-exports.getBootcamp = asyncHandler(async (req, res, next) => {
+const getBootcamp = asyncHandler(async (req, res, next) => {
     const bootcamp = await Bootcamp.findById(req.params.id);
     
     if(!bootcamp) {
@@ -31,7 +31,7 @@ exports.getBootcamp = asyncHandler(async (req, res, next) => {
 // @desc        Create new bootcamp
 // @routes      POST /api/v1/bootcamps
 // @access      Private
-exports.createBootcamp = asyncHandler(async (req, res, next) => {
+const createBootcamp = asyncHandler(async (req, res, next) => {
     const bootcamp = await Bootcamp.create(req.body);
 
     res.status(201).json({
@@ -43,7 +43,7 @@ exports.createBootcamp = asyncHandler(async (req, res, next) => {
 // @desc        Update bootcamp
 // @routes      PUT /api/v1/bootcamps/:id
 // @access      Private
-exports.updateBootcamp = asyncHandler(async (req, res, next) => {
+const updateBootcamp = asyncHandler(async (req, res, next) => {
     const bootcamp = await Bootcamp.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
         runValidators: true,
@@ -64,7 +64,7 @@ exports.updateBootcamp = asyncHandler(async (req, res, next) => {
 // @desc        Delete bootcamp
 // @routes      DELETE /api/v1/bootcamps/:id
 // @access      Private
-exports.deleteBootcamp = asyncHandler(async (req, res, next) => {
+const deleteBootcamp = asyncHandler(async (req, res, next) => {
     const bootcamp = await Bootcamp.findById(req.params.id);
 
     if(!bootcamp) {
@@ -84,7 +84,7 @@ exports.deleteBootcamp = asyncHandler(async (req, res, next) => {
 // @desc        Upload photo for bootcamp
 // @routes      PUT /api/v1/bootcamps/:id/photo
 // @access      Private
-exports.bootcampPhotoUpload = asyncHandler(async (req, res, next) => {
+const bootcampPhotoUpload = asyncHandler(async (req, res, next) => {
     const bootcamp = await Bootcamp.findById(req.params.id);
 
     if(!bootcamp) {
@@ -135,3 +135,12 @@ exports.bootcampPhotoUpload = asyncHandler(async (req, res, next) => {
         });
     });
 });
+
+export {
+    getBootcamps,
+    getBootcamp,
+    createBootcamp,
+    updateBootcamp,
+    deleteBootcamp,
+    bootcampPhotoUpload
+};

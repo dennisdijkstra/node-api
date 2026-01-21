@@ -1,18 +1,18 @@
-const express = require('express');
-const {
+import express from 'express';
+import {
     getBootcamps,
     getBootcamp,
     createBootcamp,
     updateBootcamp,
     deleteBootcamp,
     bootcampPhotoUpload
-} = require('../controllers/bootcamps');
+} from '../controllers/bootcamps.js';
 
-const advancedResults = require('../middleware/advancedResults');
-const Bootcamp = require('../models/Bootcamp');
+import advancedResults from '../middleware/advancedResults.js';
+import Bootcamp from '../models/Bootcamp.js';
 
 // Include other resource routers
-const courseRouter = require('./courses');
+import courseRouter from './courses.js';
 
 const router = express.Router();
 
@@ -34,4 +34,4 @@ router
     .put(updateBootcamp)
     .delete(deleteBootcamp);
 
-module.exports = router;
+export default router;

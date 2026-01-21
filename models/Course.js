@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const CourseSchema = new mongoose.Schema({
     title: {
@@ -71,5 +71,4 @@ CourseSchema.post('deleteOne', { document: true, query: false }, async function(
     await this.constructor.getAverageCost(this.bootcamp);
 });
 
-
-module.exports = mongoose.model('Course', CourseSchema);
+export default mongoose.model('Course', CourseSchema);

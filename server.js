@@ -1,20 +1,19 @@
-const express = require('express');
-const path = require('path');
-const morgan = require('morgan');
-const fileupload = require('express-fileupload');
-const errorHandler = require('./middleware/error');
-const connectDB = require('./config/db');
-
-require('colors');
-require('dotenv').config()
+import express from 'express';
+import mongoose from 'mongoose';
+import path from 'path';
+import morgan from 'morgan';
+import fileupload from 'express-fileupload';
+import errorHandler from './middleware/error.js';
+import connectDB from './config/db.js';
+import colors from 'colors';
 
 // Connect to database
 connectDB();
 
 // Route files
-const bootcamps = require('./routes/bootcamps');
-const courses = require('./routes/courses');
-const auth = require('./routes/auth');
+import bootcamps from './routes/bootcamps.js';
+import courses from './routes/courses.js';
+import auth from './routes/auth.js';
 
 const app = express();
 
@@ -22,7 +21,7 @@ const app = express();
 app.use(express.json());
 
 // Dev logging middleware
-if (process.env.NODE_ENV = 'development') {
+if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
 
@@ -30,7 +29,7 @@ if (process.env.NODE_ENV = 'development') {
 app.use(fileupload());
 
 // Set static folder
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(import.meta.dirname, 'public')));
 
 // Mount routers
 app.use('/api/v1/bootcamps', bootcamps)
@@ -44,8 +43,14 @@ const PORT = process.env.PORT || 5000;
 const server = app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.cyan.bold));
 
 // Handle unhandled promise rejections
-process.on('unhandledRejection', (err, promise) => {
+process.on('unhandledRejection', (err) => {
     console.log(`Error: ${err.message}`.red);
-    // Close server and exit process
-    server.close(() => process.exit(1));
-})
+
+    server.close(async () => {
+        if (mongoose.connection.readyState !== 0) {
+            await mongoose.connection.close(); // Ensure Mongoose 9 connection closes
+        }
+        process.exit(1);
+    });
+});
+

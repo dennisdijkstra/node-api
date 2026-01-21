@@ -1,14 +1,10 @@
-const fs = require('fs');
-const mongoose = require('mongoose');
-const colors = require('colors');
-require('dotenv').config()
-
-// Load env vars
-// dotenv.config({ path: './config/config.env' });
+import fs from 'fs';
+import mongoose from 'mongoose';
+import colors from 'colors';
 
 // Load models 
-const Bootcamp = require('./models/Bootcamp');
-const Course = require('./models/Course');
+import Bootcamp from './models/Bootcamp.js';
+import Course from './models/Course.js';
 
 // Connect to DB
 mongoose.connect(process.env.MONGO_URI, {});

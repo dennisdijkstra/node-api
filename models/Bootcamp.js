@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
-const slugify = require('slugify');
-const geocoder = require('../utils/geocode');
+import mongoose from 'mongoose';
+import slugify from 'slugify';
+import geocoder from '../utils/geocode.js';
 
 const BootcampSchema = new mongoose.Schema({
     name: {
@@ -137,4 +137,4 @@ BootcampSchema.virtual('courses', {
     justOne: false,
 });
 
-module.exports = mongoose.model('Bootcamp', BootcampSchema);
+export default mongoose.model('Bootcamp', BootcampSchema);
