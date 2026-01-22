@@ -10,13 +10,10 @@ import {
 
 import advancedResults from '../middleware/advancedResults.js';
 import Bootcamp from '../models/Bootcamp.js';
-
-// Include other resource routers
 import courseRouter from './courses.js';
 
 const router = express.Router();
 
-// Re-route into other resource routers
 router.use('/:bootcampId/courses', courseRouter);
 
 router

@@ -3,11 +3,8 @@ import Bootcamp from '../models/Bootcamp.js';
 import ErrorResponse from '../utils/ErrorResponse.js';
 import asyncHandler from '../middleware/async.js';
 
-// @desc        Get courses
 // @routes      GET /api/v1/courses
 // @routes      GET /api/v1/bootcamps/:bootcampId/courses
-// @access      Public
-
 const getCourses = asyncHandler(async (req, res) => {
     if (req.params.bootcampId) {
         const courses = await Course.find({ bootcamp: req.params.bootcampId });
@@ -22,10 +19,7 @@ const getCourses = asyncHandler(async (req, res) => {
     }
 });
 
-// @desc        Get single course
 // @routes      GET /api/v1/courses/:id
-// @access      Public
-
 const getCourse = asyncHandler(async (req, res) => {
     const course = await Course.findById(req.params.id).populate({
         path: 'bootcamp',
@@ -44,10 +38,7 @@ const getCourse = asyncHandler(async (req, res) => {
     });
 });
 
-// @desc        Add course
 // @routes      POST /api/v1/bootcamps/:bootcampId/courses
-// @access      Private
-
 const addCourse = asyncHandler(async (req, res) => {
     req.body.bootcamp = req.params.bootcampId;
 
@@ -67,9 +58,7 @@ const addCourse = asyncHandler(async (req, res) => {
     });
 });
 
-// @desc        Update course
 // @routes      PUT /api/v1/courses/:id
-// @access      Private
 const updateCourse = asyncHandler(async (req, res) => {
     const course = await Course.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
@@ -88,9 +77,7 @@ const updateCourse = asyncHandler(async (req, res) => {
     });
 });
 
-// @desc        Delete course
 // @routes      DELETE /api/v1/courses/:id
-// @access      Private
  const deleteCourse = asyncHandler(async (req, res) => {
     const course = await Course.findById(req.params.id);
 
