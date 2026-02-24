@@ -26,7 +26,7 @@ RESTful backend API written in Node.js with a MongoDB database.
 
 1. Install Node.js and MongoDB.
 2. Create a MongoDB database.
-3. Create a `.env` file with your configuration.
+3. Copy `.env.example` to `.env` and fill in the values.
 4. Install dependencies:
 
 ```bash
