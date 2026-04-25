@@ -1,5 +1,6 @@
 {
   "name": "node-api",
+  "packageManager": "pnpm@10.33.2",
   "version": "1.0.0",
   "description": "node back-end",
   "main": "server.js",

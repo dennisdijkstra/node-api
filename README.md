@@ -30,18 +30,18 @@ RESTful backend API written in Node.js with a MongoDB database.
 4. Install dependencies:
 
 ```bash
-npm install
+pnpm install
 ```
 
 5. Run the app:
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 ## Development
 
-- Use `npm run dev` to run the app with nodemon (auto-restart on changes).
-- Use `npm start` for production mode.
+- Use `pnpm run dev` to run the app with nodemon (auto-restart on changes).
+- Use `pnpm start` for production mode.
 - Seed the database with `node seeder.js -i` (import) or `node seeder.js -d` (delete).
 - API endpoints are organized by feature (bootcamps, courses, auth).
